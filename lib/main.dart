@@ -1152,7 +1152,7 @@ class LeaderboardScreen extends StatelessWidget {
                             Container(
                               padding: EdgeInsets.symmetric(horizontal: 6, vertical: 2),
                               decoration: BoxDecoration(
-                                color: badge == 'Hero' ? Colors.blue.shade700 : badge == 'King' ? Color(0xFFF9C623).withOpacity(0.2) : Colors.purple.shade700,
+                                color: badge == 'Hero' ? Colors.blue.shade700 : badge == 'King' ? Color(0xFFF9C623).withValues(alpha: 0.2) : Colors.purple.shade700,
                                 borderRadius: BorderRadius.circular(10),
                                 border: Border.all(
                                   color: badge == 'Hero' ? Colors.grey.shade400 : badge == 'King' ? Color(0xFFF9C623) : Color(0xFFF9C623),
@@ -1219,16 +1219,16 @@ class LeaderboardScreen extends StatelessWidget {
         List<BoxShadow>? cardShadow;
         if (rank == 1) {
           rankColor = Color(0xFFF9C623); // Gold
-          cardColor = Color(0xFFF9C623).withOpacity(0.1);
-          cardShadow = [BoxShadow(color: Color(0xFFF9C623).withOpacity(0.5), blurRadius: 10, spreadRadius: 2)];
+          cardColor = Color(0xFFF9C623).withValues(alpha: 0.1);
+          cardShadow = [BoxShadow(color: Color(0xFFF9C623).withValues(alpha: 0.5), blurRadius: 10, spreadRadius: 2)];
         } else if (rank == 2) {
           rankColor = Colors.white; // Silver
-          cardColor = Colors.white.withOpacity(0.1);
-          cardShadow = [BoxShadow(color: Colors.white.withOpacity(0.3), blurRadius: 8, spreadRadius: 1)];
+          cardColor = Colors.white.withValues(alpha: 0.1);
+          cardShadow = [BoxShadow(color: Colors.white.withValues(alpha: 0.3), blurRadius: 8, spreadRadius: 1)];
         } else if (rank == 3) {
           rankColor = Color(0xFFCD7F32); // Bronze
-          cardColor = Color(0xFFCD7F32).withOpacity(0.1);
-          cardShadow = [BoxShadow(color: Color(0xFFCD7F32).withOpacity(0.4), blurRadius: 8, spreadRadius: 1)];
+          cardColor = Color(0xFFCD7F32).withValues(alpha: 0.1);
+          cardShadow = [BoxShadow(color: Color(0xFFCD7F32).withValues(alpha: 0.4), blurRadius: 8, spreadRadius: 1)];
         } else {
           rankColor = Colors.grey;
           cardColor = Color(0xFF001122);
@@ -1265,7 +1265,7 @@ class LeaderboardScreen extends StatelessWidget {
                       height: 40,
                       decoration: BoxDecoration(
                         shape: BoxShape.circle,
-                        color: rankColor.withOpacity(0.2),
+                        color: rankColor.withValues(alpha: 0.2),
                         border: Border.all(color: rankColor, width: 2),
                       ),
                       child: Center(
@@ -1292,7 +1292,7 @@ class LeaderboardScreen extends StatelessWidget {
                                 Container(
                                   padding: EdgeInsets.symmetric(horizontal: 6, vertical: 2),
                                   decoration: BoxDecoration(
-                                    color: badge == 'Hero' ? Colors.blue.shade700 : badge == 'King' ? Color(0xFFF9C623).withOpacity(0.2) : Colors.purple.shade700,
+                                    color: badge == 'Hero' ? Colors.blue.shade700 : badge == 'King' ? Color(0xFFF9C623).withValues(alpha: 0.2) : Colors.purple.shade700,
                                     borderRadius: BorderRadius.circular(10),
                                     border: Border.all(
                                       color: badge == 'Hero' ? Colors.grey.shade400 : badge == 'King' ? Color(0xFFF9C623) : Color(0xFFF9C623),
@@ -1527,7 +1527,7 @@ class LeaderboardScreen extends StatelessWidget {
       width: 60,
       padding: EdgeInsets.all(8),
       decoration: BoxDecoration(
-        color: isCurrent ? color.withOpacity(0.2) : Colors.grey.shade800,
+        color: isCurrent ? color.withValues(alpha: 0.2) : Colors.grey.shade800,
         borderRadius: BorderRadius.circular(8),
         border: Border.all(
           color: isCurrent ? color : Colors.grey.shade600,

@@ -70,7 +70,7 @@ BoxDecoration kCardDecoration = BoxDecoration(
   border: Border.all(color: kPrimaryColor, width: 2),
   boxShadow: [
     BoxShadow(
-      color: kPrimaryColor.withOpacity(0.3),
+      color: kPrimaryColor.withValues(alpha: 0.3),
       blurRadius: 20,
       spreadRadius: 5,
       offset: const Offset(0, 5),
@@ -78,8 +78,8 @@ BoxDecoration kCardDecoration = BoxDecoration(
   ],
   gradient: LinearGradient(
     colors: [
-      kTextColor.withOpacity(0.1),
-      kTextColor.withOpacity(0.05),
+      kTextColor.withValues(alpha: 0.1),
+      kTextColor.withValues(alpha: 0.05),
     ],
     begin: Alignment.topLeft,
     end: Alignment.bottomRight,

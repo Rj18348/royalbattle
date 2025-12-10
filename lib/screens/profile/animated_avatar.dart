@@ -42,15 +42,15 @@ class _AnimatedAvatarState extends State<AnimatedAvatar>
               shape: BoxShape.circle,
               gradient: SweepGradient(
                 colors: [
-                  kPrimaryColor.withOpacity(0.8),
-                  kPrimaryColor.withOpacity(0.2),
-                  kPrimaryColor.withOpacity(0.8),
+                  kPrimaryColor.withValues(alpha: 0.8),
+                  kPrimaryColor.withValues(alpha: 0.2),
+                  kPrimaryColor.withValues(alpha: 0.8),
                 ],
                 stops: const [0.0, 0.5, 1.0],
               ),
               boxShadow: [
                 BoxShadow(
-                  color: kPrimaryColor.withOpacity(0.5),
+                  color: kPrimaryColor.withValues(alpha: 0.5),
                   blurRadius: 20,
                   spreadRadius: 5,
                 ),
@@ -76,7 +76,7 @@ class _AnimatedAvatarState extends State<AnimatedAvatar>
               backgroundColor: kPrimaryColor,
               foregroundColor: Colors.black,
               elevation: 5,
-              shadowColor: kPrimaryColor.withOpacity(0.5),
+              shadowColor: kPrimaryColor.withValues(alpha: 0.5),
             ),
             onPressed: () {},
           ),

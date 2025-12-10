@@ -110,7 +110,7 @@ class _RewardCard extends StatelessWidget {
     return Container(
       padding: const EdgeInsets.all(16),
       decoration: BoxDecoration(
-        color: kPrimaryColor.withOpacity(0.1),
+        color: kPrimaryColor.withValues(alpha: 0.1),
         borderRadius: BorderRadius.circular(12),
         border: Border.all(color: kPrimaryColor, width: 1),
       ),

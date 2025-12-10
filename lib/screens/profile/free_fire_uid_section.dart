@@ -91,17 +91,17 @@ class FreeFireUidSection extends StatelessWidget {
     return Container(
       padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 6),
       decoration: BoxDecoration(
-        color: color.withOpacity(0.2),
+        color: color.withValues(alpha: 0.2),
         borderRadius: BorderRadius.circular(20),
       ),
       child: Row(
         children: [
-          Icon(icon, color: color, size: 18),
+          Icon(icon, color: color.withValues(alpha: 0.8), size: 18),
           const SizedBox(width: 8),
           Text(
             text,
             style: TextStyle(
-              color: color,
+              color: color.withValues(alpha: 0.8),
               fontSize: 14,
               fontWeight: FontWeight.bold,
             ),

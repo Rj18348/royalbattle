@@ -21,12 +21,12 @@ class ProfileAppBar extends StatelessWidget implements PreferredSizeWidget {
           borderRadius: BorderRadius.circular(16),
           boxShadow: [
             BoxShadow(
-              color: kPrimaryColor.withOpacity(0.3),
+              color: kPrimaryColor.withValues(alpha: 0.3),
               blurRadius: 10,
               spreadRadius: 2,
             ),
             BoxShadow(
-              color: kPrimaryColor.withOpacity(0.2),
+              color: kPrimaryColor.withValues(alpha: 0.2),
               blurRadius: 20,
               spreadRadius: 1,
             ),
