@@ -11,7 +11,11 @@ class ChampionsScreen extends StatelessWidget {
         backgroundColor: Colors.black,
         title: Text(
           '🎖️ RoyalBattle Empire Top Champions',
-          style: TextStyle(color: Colors.amber, fontSize: 20, fontWeight: FontWeight.bold),
+          style: TextStyle(
+            color: Colors.amber,
+            fontSize: 20,
+            fontWeight: FontWeight.bold,
+          ),
         ),
         leading: IconButton(
           icon: Icon(Icons.arrow_back, color: Colors.amber),
@@ -36,10 +40,11 @@ class ChampionCard extends StatefulWidget {
   const ChampionCard({super.key, required this.rank});
 
   @override
-  _ChampionCardState createState() => _ChampionCardState();
+  ChampionCardState createState() => ChampionCardState();
 }
 
-class _ChampionCardState extends State<ChampionCard> with TickerProviderStateMixin {
+class ChampionCardState extends State<ChampionCard>
+    with TickerProviderStateMixin {
   late AnimationController _controller;
   late Animation<double> _animation;
 
@@ -50,9 +55,10 @@ class _ChampionCardState extends State<ChampionCard> with TickerProviderStateMix
       duration: const Duration(seconds: 2),
       vsync: this,
     )..repeat(reverse: true);
-    _animation = Tween<double>(begin: 1.0, end: 1.1).animate(
-      CurvedAnimation(parent: _controller, curve: Curves.easeInOut),
-    );
+    _animation = Tween<double>(
+      begin: 1.0,
+      end: 1.1,
+    ).animate(CurvedAnimation(parent: _controller, curve: Curves.easeInOut));
   }
 
   @override
@@ -86,7 +92,9 @@ class _ChampionCardState extends State<ChampionCard> with TickerProviderStateMix
                 ),
                 boxShadow: [
                   BoxShadow(
-                    color: isTopThree ? Color.fromRGBO(255, 193, 7, 0.6) : Color.fromRGBO(255, 193, 7, 0.3),
+                    color: isTopThree
+                        ? Color.fromRGBO(255, 193, 7, 0.6)
+                        : Color.fromRGBO(255, 193, 7, 0.3),
                     blurRadius: isTopThree ? 20 : 10,
                     spreadRadius: isTopThree ? 5 : 2,
                   ),
@@ -106,7 +114,10 @@ class _ChampionCardState extends State<ChampionCard> with TickerProviderStateMix
                     Align(
                       alignment: Alignment.topRight,
                       child: Container(
-                        padding: EdgeInsets.symmetric(horizontal: 12, vertical: 6),
+                        padding: EdgeInsets.symmetric(
+                          horizontal: 12,
+                          vertical: 6,
+                        ),
                         decoration: BoxDecoration(
                           color: Colors.amber,
                           borderRadius: BorderRadius.circular(20),
@@ -128,10 +139,7 @@ class _ChampionCardState extends State<ChampionCard> with TickerProviderStateMix
                       height: 120,
                       decoration: BoxDecoration(
                         shape: BoxShape.circle,
-                        border: Border.all(
-                          color: Colors.amber,
-                          width: 4,
-                        ),
+                        border: Border.all(color: Colors.amber, width: 4),
                         boxShadow: [
                           BoxShadow(
                             color: Color.fromRGBO(255, 193, 7, 0.5),
@@ -142,7 +150,8 @@ class _ChampionCardState extends State<ChampionCard> with TickerProviderStateMix
                       ),
                       child: ClipOval(
                         child: Container(
-                          color: Colors.grey[400], // Placeholder for profile photo
+                          color:
+                              Colors.grey[400], // Placeholder for profile photo
                           child: Icon(
                             Icons.person,
                             size: 80,
@@ -165,7 +174,10 @@ class _ChampionCardState extends State<ChampionCard> with TickerProviderStateMix
                     // Legendary Badge
                     if (widget.rank == 1)
                       Container(
-                        padding: EdgeInsets.symmetric(horizontal: 16, vertical: 8),
+                        padding: EdgeInsets.symmetric(
+                          horizontal: 16,
+                          vertical: 8,
+                        ),
                         decoration: BoxDecoration(
                           color: Colors.purple[900],
                           borderRadius: BorderRadius.circular(20),
@@ -197,8 +209,12 @@ class _ChampionCardState extends State<ChampionCard> with TickerProviderStateMix
                         ),
                         StatColumn(
                           icon: Icons.celebration,
-                          value: widget.rank == 1 ? 'MVP' : 'Top ${widget.rank}',
-                          label: widget.rank == 1 ? 'Season MVP' : 'Season Rank',
+                          value: widget.rank == 1
+                              ? 'MVP'
+                              : 'Top ${widget.rank}',
+                          label: widget.rank == 1
+                              ? 'Season MVP'
+                              : 'Season Rank',
                         ),
                       ],
                     ),
@@ -218,7 +234,12 @@ class StatColumn extends StatelessWidget {
   final String value;
   final String label;
 
-  const StatColumn({super.key, required this.icon, required this.value, required this.label});
+  const StatColumn({
+    super.key,
+    required this.icon,
+    required this.value,
+    required this.label,
+  });
 
   @override
   Widget build(BuildContext context) {
@@ -236,10 +257,7 @@ class StatColumn extends StatelessWidget {
         ),
         Text(
           label,
-          style: TextStyle(
-            color: Colors.grey[400],
-            fontSize: 12,
-          ),
+          style: TextStyle(color: Colors.grey[400], fontSize: 12),
           textAlign: TextAlign.center,
         ),
       ],
