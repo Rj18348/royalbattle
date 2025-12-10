@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-import 'package:royalbattle/profile/constants.dart';
+import 'package:royalbattle/screens/profile/constants.dart';
 
 class FreeFireUidSection extends StatelessWidget {
   final bool isUidVerified;

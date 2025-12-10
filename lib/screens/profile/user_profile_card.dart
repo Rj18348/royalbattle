@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:royalbattle/profile/constants.dart';
-import 'package:royalbattle/profile/animated_avatar.dart';
+import 'package:royalbattle/screens/profile/constants.dart';
+import 'package:royalbattle/screens/profile/animated_avatar.dart';
 
 import 'social_connect_section.dart';
 

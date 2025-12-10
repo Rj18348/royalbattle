@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'champions_screen.dart';
-import 'profile_screen.dart';
+import 'screens/champions_screen.dart';
+import 'screens/profile_screen.dart';
 import 'theme.dart';
 
 void main() {

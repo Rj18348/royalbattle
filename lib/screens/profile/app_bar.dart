@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:royalbattle/profile/constants.dart';
+import 'package:royalbattle/screens/profile/constants.dart';
 
 class ProfileAppBar extends StatelessWidget implements PreferredSizeWidget {
   const ProfileAppBar({super.key});
