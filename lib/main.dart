@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
-import 'champions_screen.dart';
-import 'profile_screen.dart';
+import 'screens/champions_screen.dart';
+import 'screens/profile_screen.dart';
+import 'theme.dart';
 
 void main() {
   runApp(const MyApp());
@@ -13,10 +14,7 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       title: 'Royal Battle',
-      theme: ThemeData(
-        colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
-        useMaterial3: true,
-      ),
+      theme: AppTheme.darkTheme,
       home: HomePage(),
     );
   }
@@ -34,16 +32,16 @@ class HomeScreen extends StatelessWidget {
           // 1. Header (Logo + Notifications + Support)
           Container(
             height: 60,
-            color: Colors.grey[200],
+            color: AppTheme.headerGrey,
             padding: EdgeInsets.symmetric(horizontal: 16),
             child: Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
-                Text('Royal Battle Logo', style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold)),
+                Text('Royal Battle Logo', style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold, color: AppTheme.textPrimary)),
                 Row(
                   children: [
-                    IconButton(icon: Icon(Icons.notifications), onPressed: () {}),
-                    IconButton(icon: Icon(Icons.support), onPressed: () {}),
+                    IconButton(icon: Icon(Icons.notifications, color: AppTheme.textPrimary), onPressed: () {}),
+                    IconButton(icon: Icon(Icons.support, color: AppTheme.textPrimary), onPressed: () {}),
                   ],
                 ),
               ],
@@ -182,7 +180,7 @@ class TournamentScreen extends StatefulWidget {
   const TournamentScreen({super.key});
 
   @override
-  _TournamentScreenState createState() => _TournamentScreenState();
+  State<TournamentScreen> createState() => _TournamentScreenState();
 }
 
 class _TournamentScreenState extends State<TournamentScreen> {
@@ -317,7 +315,7 @@ class TournamentListScreen extends StatefulWidget {
   const TournamentListScreen({super.key, required this.category});
 
   @override
-  _TournamentListScreenState createState() => _TournamentListScreenState();
+  State<TournamentListScreen> createState() => _TournamentListScreenState();
 }
 
 class _TournamentListScreenState extends State<TournamentListScreen> {
@@ -442,19 +440,20 @@ class _TournamentListScreenState extends State<TournamentListScreen> {
                       });
                     },
                   ),
-                  Row(
-                    children: ['Upcoming', 'Live Now', 'Starting Soon'].map((String option) {
-                      return RadioListTile<String>(
-                        title: Text(option),
-                        value: option,
-                        groupValue: selectedTime,
-                        onChanged: (value) {
-                          setModalState(() {
-                            selectedTime = value!;
-                          });
-                        },
-                      );
-                    }).toList(),
+                  RadioGroup<String>(
+                    onChanged: (value) {
+                      setModalState(() {
+                        selectedTime = value!;
+                      });
+                    },
+                    child: Column(
+                      children: ['Upcoming', 'Live Now', 'Starting Soon'].map((String option) {
+                        return RadioListTile<String>(
+                          title: Text(option),
+                          value: option,
+                        );
+                      }).toList(),
+                    ),
                   ),
                   ElevatedButton(
                     onPressed: () {
@@ -1106,7 +1105,9 @@ class LeaderboardScreen extends StatelessWidget {
         String badge = '';
         if (rank <= 3) {
           badge = ['Emperor', 'King', 'Hero'][rank - 1];
-        } else if (rank <= 10) badge = 'Warrior';
+        } else if (rank <= 10) {
+          badge = 'Warrior';
+        }
 
         return Card(
           margin: EdgeInsets.symmetric(vertical: 4, horizontal: 8),
@@ -1127,7 +1128,7 @@ class LeaderboardScreen extends StatelessWidget {
                   height: 40,
                   decoration: BoxDecoration(
                     shape: BoxShape.circle,
-                      color: Color.fromRGBO(rankColor.red, rankColor.green, rankColor.blue, 0.2),
+                      color: Color.fromRGBO((rankColor.r * 255).round().clamp(0, 255), (rankColor.g * 255).round().clamp(0, 255), (rankColor.b * 255).round().clamp(0, 255), 0.2),
                     border: Border.all(color: rankColor, width: 2),
                   ),
                   child: Center(
@@ -1154,7 +1155,7 @@ class LeaderboardScreen extends StatelessWidget {
                             Container(
                               padding: EdgeInsets.symmetric(horizontal: 6, vertical: 2),
                               decoration: BoxDecoration(
-                                color: badge == 'Hero' ? Colors.blue.shade700 : badge == 'King' ? Color(0xFFF9C623).withOpacity(0.2) : Colors.purple.shade700,
+                                color: badge == 'Hero' ? Colors.blue.shade700 : badge == 'King' ? Color(0xFFF9C623).withValues(alpha: 0.2) : Colors.purple.shade700,
                                 borderRadius: BorderRadius.circular(10),
                                 border: Border.all(
                                   color: badge == 'Hero' ? Colors.grey.shade400 : badge == 'King' ? Color(0xFFF9C623) : Color(0xFFF9C623),
@@ -1221,16 +1222,16 @@ class LeaderboardScreen extends StatelessWidget {
         List<BoxShadow>? cardShadow;
         if (rank == 1) {
           rankColor = Color(0xFFF9C623); // Gold
-          cardColor = Color(0xFFF9C623).withOpacity(0.1);
-          cardShadow = [BoxShadow(color: Color(0xFFF9C623).withOpacity(0.5), blurRadius: 10, spreadRadius: 2)];
+          cardColor = Color(0xFFF9C623).withValues(alpha: 0.1);
+          cardShadow = [BoxShadow(color: Color(0xFFF9C623).withValues(alpha: 0.5), blurRadius: 10, spreadRadius: 2)];
         } else if (rank == 2) {
           rankColor = Colors.white; // Silver
-          cardColor = Colors.white.withOpacity(0.1);
-          cardShadow = [BoxShadow(color: Colors.white.withOpacity(0.3), blurRadius: 8, spreadRadius: 1)];
+          cardColor = Colors.white.withValues(alpha: 0.1);
+          cardShadow = [BoxShadow(color: Colors.white.withValues(alpha: 0.3), blurRadius: 8, spreadRadius: 1)];
         } else if (rank == 3) {
           rankColor = Color(0xFFCD7F32); // Bronze
-          cardColor = Color(0xFFCD7F32).withOpacity(0.1);
-          cardShadow = [BoxShadow(color: Color(0xFFCD7F32).withOpacity(0.4), blurRadius: 8, spreadRadius: 1)];
+          cardColor = Color(0xFFCD7F32).withValues(alpha: 0.1);
+          cardShadow = [BoxShadow(color: Color(0xFFCD7F32).withValues(alpha: 0.4), blurRadius: 8, spreadRadius: 1)];
         } else {
           rankColor = Colors.grey;
           cardColor = Color(0xFF001122);
@@ -1240,7 +1241,9 @@ class LeaderboardScreen extends StatelessWidget {
         String badge = '';
         if (rank <= 3) {
           badge = ['Emperor', 'King', 'Hero'][rank - 1];
-        } else if (rank <= 10) badge = 'Warrior';
+        } else if (rank <= 10) {
+          badge = 'Warrior';
+        }
 
         int totalKills = 5000 - (index * 200);
         double avgKills = (totalKills / 50).roundToDouble(); // Assume 50 matches
@@ -1267,7 +1270,7 @@ class LeaderboardScreen extends StatelessWidget {
                       height: 40,
                       decoration: BoxDecoration(
                         shape: BoxShape.circle,
-                        color: rankColor.withOpacity(0.2),
+                        color: rankColor.withValues(alpha: 0.2),
                         border: Border.all(color: rankColor, width: 2),
                       ),
                       child: Center(
@@ -1294,7 +1297,7 @@ class LeaderboardScreen extends StatelessWidget {
                                 Container(
                                   padding: EdgeInsets.symmetric(horizontal: 6, vertical: 2),
                                   decoration: BoxDecoration(
-                                    color: badge == 'Hero' ? Colors.blue.shade700 : badge == 'King' ? Color(0xFFF9C623).withOpacity(0.2) : Colors.purple.shade700,
+                                    color: badge == 'Hero' ? Colors.blue.shade700 : badge == 'King' ? Color(0xFFF9C623).withValues(alpha: 0.2) : Colors.purple.shade700,
                                     borderRadius: BorderRadius.circular(10),
                                     border: Border.all(
                                       color: badge == 'Hero' ? Colors.grey.shade400 : badge == 'King' ? Color(0xFFF9C623) : Color(0xFFF9C623),
@@ -1529,7 +1532,7 @@ class LeaderboardScreen extends StatelessWidget {
       width: 60,
       padding: EdgeInsets.all(8),
       decoration: BoxDecoration(
-        color: isCurrent ? color.withOpacity(0.2) : Colors.grey.shade800,
+        color: isCurrent ? color.withValues(alpha: 0.2) : Colors.grey.shade800,
         borderRadius: BorderRadius.circular(8),
         border: Border.all(
           color: isCurrent ? color : Colors.grey.shade600,
@@ -1584,7 +1587,7 @@ class HomePage extends StatefulWidget {
   const HomePage({super.key});
 
   @override
-  _HomePageState createState() => _HomePageState();
+  State<HomePage> createState() => _HomePageState();
 }
 
 class _HomePageState extends State<HomePage> {
@@ -1636,7 +1639,9 @@ class _HomePageState extends State<HomePage> {
           ),
         ],
         currentIndex: _selectedIndex,
-        selectedItemColor: Colors.amber[800],
+        selectedItemColor: AppTheme.primaryGold,
+        unselectedItemColor: AppTheme.textSecondary,
+        backgroundColor: AppTheme.backgroundBlack,
         onTap: _onItemTapped,
       ),
     );
